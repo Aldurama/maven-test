@@ -2,7 +2,7 @@ FROM maven:3.6.3-jdk-8
 COPY my-app my-app
 RUN mvn clean package -f my-app/
 
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8-jre-alpine
 RUN addgroup -g 1001 -S notroot && adduser -u 1001 -S notroot  -G notroot
 USER notroot
 WORKDIR /home/notroot
