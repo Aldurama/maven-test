@@ -1,7 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
-RUN ln -sf /bin/bash /bin/sh
-RUN useradd notroot -p 1234 --home /home/notroot
+RUN addgroup -g 1001 -S notroot && adduser -u 1001 -S notroot  -G notroot
 
 USER notroot
 
