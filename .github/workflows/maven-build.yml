@@ -15,7 +15,7 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: mvn clean package -f ./my-app/ -DbumpPatch
-      - run: mkdir staging && cp my-app/target/my-app-1.0.jar staging/my-app-1.0${{ env.GITHUB_RUN_NUMBER }}.jar
+      - run: mkdir staging && cp my-app/target/my-app-1.0.jar "staging/my-app-1.0$GITHUB_RUN_NUMBER.jar"
       - run: tree
       - uses: actions/upload-artifact@v3
         with:
@@ -46,5 +46,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: aldurama/goodbye:1.0${{ env.GITHUB_RUN_NUMBER }}
+          tags: "aldurama/goodbye:1.0$GITHUB_RUN_NUMBER"
 
