@@ -14,7 +14,7 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
       - name: Build with Maven
-        run: mvn clean package -f ./my-app/ -DbumpPatch
+        run: mvn clean validate -f ./my-app/ -DbumpPatch
       - run: mkdir staging && cp my-app/target/my-app-1.0.jar "staging/my-app-1.0.$GITHUB_RUN_NUMBER.jar"
       - run: tree
       - uses: actions/upload-artifact@v3
@@ -42,8 +42,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build
-        run: docker build . -t aldurama/goodbye:0.1.$GITHUB_RUN_NUMBER
-        
+        run: docker build . -t aldurama/goodbye:0.1.${GITHUB_RUN_NUMBER}
+
       - name: Push
-        run: docker push aldurama/goodbye:0.1.$GITHUB_RUN_NUMBER
+        run: docker push aldurama/goodbye:0.1.${GITHUB_RUN_NUMBER}
 
