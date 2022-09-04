@@ -20,3 +20,18 @@ jobs:
         with:
           name: Package
           path: staging
+
+
+  immagining:
+    needs: build
+    runs-on: macOS-latest
+    steps:
+      - name: Download math result for job 2
+        uses: actions/download-artifact@v3
+        with:
+          name: homework
+      - name: Print the final result
+        shell: bash
+        run: |
+          value=`cat math-homework.txt`
+          echo The result is $value
