@@ -15,7 +15,7 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: mvn clean package -f ./my-app/ -DbumpPatch
-      - run: mkdir staging && cp my-app/target/*0.jar staging
+      - run: mkdir staging && cp my-app/target/my-app-*.jar staging
       - run: tree
       - uses: actions/upload-artifact@v3
         with:
