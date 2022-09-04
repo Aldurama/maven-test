@@ -14,7 +14,7 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
       - name: Build with Maven
-        run: mvn clean package -f ./my-app/ -DbumpPatch
+        run: mvn clean validate -f ./my-app/ -DbumpPatch
       - run: mkdir staging && cp my-app/target/*.jar staging
       - uses: actions/upload-artifact@v3
         with:
@@ -30,4 +30,4 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: Package
-      
+
