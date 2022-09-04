@@ -46,5 +46,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: aldurama/goodbye:1.0.$GITHUB_RUN_NUMBER
+          tags: format('{{aldurama/goodbye:{0}{1}}}', '1.0.', ${{ env.GITHUB_RUN_NUMBER }})
 
