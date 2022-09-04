@@ -1,5 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
+RUN ln -sf /bin/bash /bin/sh
 RUN useradd notroot -p 1234 --home /home/notroot
 
 USER notroot
