@@ -14,8 +14,8 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
       - name: Build with Maven
-        run: mvn clean validate -f ./my-app/ -DbumpPatch
-      - run: mkdir staging && cp my-app/target/*.jar staging
+        run: mvn clean package -f ./my-app/ -DbumpPatch
+      - run: mkdir staging && cp my-app/target/*0.jar staging
       - uses: actions/upload-artifact@v3
         with:
           name: Package
@@ -29,5 +29,18 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
-          name: Package
+          name: staging
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.docker_username }}
+          password: ${{ secrets.docker_password }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: aldurama/goodbye:latest
 
