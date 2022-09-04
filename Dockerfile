@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
-RUN adduser notroot -h notroot
+RUN adduser notroot -h notroot -p 1234
 
 USER notroot
 
